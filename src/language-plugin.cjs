@@ -1,6 +1,6 @@
-const ts = require('typescript/lib/tsserverlibrary');
+/// <reference types="@volar/typescript" />
 
-/** @import {} from '@volar/typescript'; */
+const ts = require('typescript/lib/tsserverlibrary');
 
 /**
  * @returns {import('@volar/language-core').LanguagePlugin<string>}
@@ -9,10 +9,11 @@ exports.createPngLanguagePlugin = function createPngLanguagePlugin() {
   return {
     getLanguageId(scriptId) {
       throw new Error('something wrong');
-      // if (scriptId.endsWith('.png')) return 'png';
-      // return undefined;
+      if (scriptId.endsWith('.png')) return 'png';
+      return undefined;
     },
     createVirtualCode(scriptId, languageId) {
+      // throw new Error('something wrong');
       if (languageId !== 'png') return undefined;
       const dtsContent = `
 declare const I_PNG: { src: string, width: number, height: number };
@@ -38,6 +39,7 @@ export default I_PNG;
         },
       ],
       getServiceScript(root) {
+        // throw new Error('something wrong');
         return {
           code: root,
           extension: ts.Extension.Ts,
