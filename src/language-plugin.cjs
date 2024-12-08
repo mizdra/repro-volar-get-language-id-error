@@ -8,8 +8,9 @@ const ts = require('typescript/lib/tsserverlibrary');
 exports.createPngLanguagePlugin = function createPngLanguagePlugin() {
   return {
     getLanguageId(scriptId) {
-      if (scriptId.endsWith('.png')) return 'png';
-      return undefined;
+      throw new Error('something wrong');
+      // if (scriptId.endsWith('.png')) return 'png';
+      // return undefined;
     },
     createVirtualCode(scriptId, languageId) {
       if (languageId !== 'png') return undefined;
